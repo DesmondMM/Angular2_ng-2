@@ -24,6 +24,7 @@ class Article {
 
 @Component({
     selector: 'reddit-article',
+    inputs: ['article'],
     host: {
         class: 'row'
     },
@@ -96,7 +97,7 @@ class ArticleComponent {
         </form>
 
         <div class="ui grid posts">
-             <reddit-article></reddit-article>
+             <reddit-article [article]="myArticle"></reddit-article>
         </div>
     `
 })
