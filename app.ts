@@ -2,6 +2,18 @@ import {bootstrap} from "angular2/platform/browser";
 import {Component} from "angular2/core";
 import {NgFor} from "angular2/common";
 
+class Article {
+    title: string;
+    link: string;
+    votes: number;
+
+    constructor(title: string, link: string, votes?: number){
+        this.title = title;
+        this.link = link;
+        this.votes = votes || 0;
+    }
+}
+
 @Component({
     selector: 'reddit-article',
     host: {
@@ -21,9 +33,10 @@ import {NgFor} from "angular2/common";
                 <a class="ui large header" href="{{link}}">
                     {{title}}
                 </a>
+                ({{link}})
                 <ul class="ui big horizontal list voters">
                     <li class="item">
-                        <a href=" (click)=voteUp()">
+                        <a href (click)="voteUp()">
                             <i class="arrow up icon"></i>
                             upvote
                         </a>
@@ -52,14 +65,17 @@ class ArticleComponent {
 
     voteUp() {
         this.votes += 1;
+        return false;
     }
 
     voteDown() {
         this.votes -= 1;
+        return false;
     }
 }
 @Component({
     selector: 'reddit',
+    directives: [ArticleComponent],
     template: `
         <form class="ui large form segment">
             <h3 class="ui header">Add a Link</h3>
