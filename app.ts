@@ -1,6 +1,6 @@
 import {bootstrap} from "angular2/platform/browser";
 import {Component} from "angular2/core";
-import {ngFor} from "angular2/common"''
+import {NgFor} from "angular2/common";
 
 @Component({
     selector: 'hello-world',
