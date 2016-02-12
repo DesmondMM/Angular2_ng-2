@@ -14,7 +14,7 @@ import {ngFor} from "angular2/common"''
     `
 })
 class HelloWorld {
-    name: string;
+    names: string[];
 
     constructor(){
         this.names = ['Desmond', 'Munashe', 'Denford', 'Tinashe'];
