@@ -20,6 +20,15 @@ class Article {
     voteDown(): void {
         this.votes -= 1;
     }
+
+    domain(): string {
+        try {
+            const link:string = this.link.split('//')[1];
+            return link.split('/')[0];
+        } catch (err){
+            return null;
+        }
+    }
 }
 
 @Component({
@@ -42,7 +51,7 @@ class Article {
                 <a class="ui large header" href="{{article.link}}">
                     {{article.title}}
                 </a>
-                ({{article.link}})
+                <div class="meta">({{article.domain()}})</div>
                 <ul class="ui big horizontal list voters">
                     <li class="item">
                         <a href (click)="voteUp()">
@@ -118,8 +127,8 @@ class RedditApp {
     addArticle(title: HTMLInputElement, link: HTMLInputElement): void {
         console.log(`Adding article title: ${title.value} and link: ${link.value}`);
         this.articles.push(new Article(title.value, link.value,0));
-        title = "";
-        link = "";
+        title.value = '';
+        link.value = '';
     }
 }
 
